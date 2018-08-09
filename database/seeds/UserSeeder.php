@@ -11,6 +11,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('users')->insert([
+            'name' => 'administrator',
+            'email' => 'admin@eletroshop.ru',
+            'password' => Hash::make('administrator')]);
     }
 }
