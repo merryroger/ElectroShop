@@ -11,10 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ProductController@index')->name('products');
 
-Auth::routes();
+Route::get('/categories', 'CategoryController@index')->name('categories');
+
+Route::get('/cart', 'OrderController@index')->name('cart');
+
+Route::namespace('Auth')->group(function () {
+    Route::get('/login', 'AuthController@showLoginForm')->name('login');
+    Route::post('/login', 'AuthController@login');
+    Route::post('/logout', 'AuthController@logout')->name('logout');
+
+    Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
+    Route::post('/register', 'RegisterController@register');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');

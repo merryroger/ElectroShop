@@ -13,7 +13,8 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'administrator',
-            'email' => 'admin@eletroshop.ru',
+            'email' => 'admin@electroshop.ru',
+            'role' => 'admin',
             'password' => Hash::make('administrator')]);
     }
 }
