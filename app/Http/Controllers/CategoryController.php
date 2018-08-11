@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $isAdmin = (isset($user) && !strcmp($user->role, 'admin'));
+        $products = Product::all();
+
+        return ($isAdmin) ? view('admin.categories', compact('products')) : view('categories', compact('products'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -14,7 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $isAdmin = (isset($user) && !strcmp($user->role, 'admin'));
+
+        return ($isAdmin) ? view('admin.orders') : view('orders');
     }
 
     /**

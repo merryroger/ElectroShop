@@ -15,7 +15,7 @@ Route::get('/', 'ProductController@index')->name('products');
 
 Route::get('/categories', 'CategoryController@index')->name('categories');
 
-Route::get('/cart', 'OrderController@index')->name('cart');
+Route::get('/cart', 'OrderController@index')->name('cart')->middleware('cart');
 
 Route::namespace('Auth')->group(function () {
     Route::get('/login', 'AuthController@showLoginForm')->name('login');

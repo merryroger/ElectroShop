@@ -7,3 +7,153 @@ html, body {
     height: 100%;
     background-color: #eeeeee;
 }
+
+div.header {
+    position:absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+header {
+    padding: 6px 0;
+    background-color: #4b4e51;
+    display: block;
+}
+
+form {
+    padding: 20px 20pt;
+    font: 400 11pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+nav {
+    margin: 0 40pt;
+    padding: 4px 0;
+    font: 400 11pt "Fira Sans Extra Condensed", sans-serif;
+    display: block;
+}
+
+nav.menu {
+    float: left;
+}
+
+nav.ctrls {
+    float: right;
+}
+
+div.title {
+    float: left;
+    margin: 0 40pt;
+    color: #cbced1;
+    font: 400 17pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+.title a {
+    color: #cbced1;
+    text-decoration: none;
+}
+
+div.pt {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+div.ptc {
+    display: table-cell;
+}
+
+.menu span, .ctrls span {
+    margin: 0 8pt;
+    color: #dbdee1;
+}
+
+.menu a {
+    color: #6db8f7;
+}
+
+.ctrls a {
+    color: #cbced1;
+}
+
+.info {
+    color: #666666;
+    font: 400 12pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+div.login_form {
+    margin: auto;
+    width: 256px;
+    border: 1px solid #4b4e51;
+    border-radius: 10px;
+}
+
+div.form_caption {
+    padding: 5px 5pt;
+    color: #cbced1;
+    background-color: #4b4e51;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    font: 400 12pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+div.form_row {
+    margin-bottom: 20px;
+}
+
+.form_row label {
+    float: left;
+    color: #4b4e51;
+}
+
+input.form_item {
+    float: right;
+    margin-left: 5pt;
+    padding: 2px 5pt;
+    width: 130px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    color: #333333;
+    background-color: #eeeeee;
+}
+
+div.fmctrls {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.fmctrls button {
+    margin-left: 2pt;
+    padding: 2px 16pt;
+    border-radius: 5px;
+    color: #40555d;
+    border-top: 1px solid #8b8e91;
+    border-left: 1px solid #8b8e91;
+    border-right: 1px solid #4b4e51;
+    background-color: #e0e0e0;
+    font: 400 11pt "Fira Sans Extra Condensed", sans-serif;
+    cursor: pointer;
+}
+
+button.do {
+    border-bottom: 1px solid #009900;
+}
+
+.hc {
+    text-align: center;
+}
+
+.vc {
+    vertical-align: middle;
+}
+
+div.invalid-feedback {
+    padding: 4px 0;
+    background-color: #990000;
+}
+
+.invalid-feedback span {
+    padding: 0 40pt;
+    color: #ffcc66;
+    font: 600 10pt "Raleway", sans-serif;
+}

@@ -17,15 +17,21 @@
           rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/shop.css" type="text/css">
+    @dump(session()->all());
+    @if(strcmp(session()->get('user'), 'admin'))
+        <link rel="stylesheet" href="css/shop.css" type="text/css">
+    @else
+        <link rel="stylesheet" href="css/admin.css" type="text/css">
+    @endif
 </head>
 <body>
 <div class="header">
+<!--
     <header>
         @if(Route::currentRouteName() == 'products')
-            <div class="title">{{ @trans('shop.name') }}</div>
+    <div class="title">{{ @trans('shop.name') }}</div>
         @else
-            <div class="title"><a href="/">{{ @trans('shop.name') }}</a></div>
+    <div class="title"><a href="/">{{ @trans('shop.name') }}</a></div>
         @endif
         <nav class="menu">
             @include('menu')
@@ -33,9 +39,9 @@
         <nav class="ctrls">
         <span>
             @if(Route::currentRouteName() == 'login')
-                {{ @trans('shop.sign_in') }}
-            @else
-                <a href="{{ route('login') }}">{{ @trans('shop.sign_in') }}</a>
+    {{ @trans('shop.sign_in') }}
+@else
+    <a href="{{ route('login') }}">{{ @trans('shop.sign_in') }}</a>
             @endif
         </span>
             <span>
@@ -45,11 +51,12 @@
         <br clear="all"/>
     </header>
     @if ($errors->has('name'))
-        <div class="invalid-feedback"><span>{{ $errors->first('name') }}</span></div>
+    <div class="invalid-feedback"><span>{{ $errors->first('name') }}</span></div>
     @endif
-    @if ($errors->has('password'))
-        <div class="invalid-feedback"><span>{{ $errors->first('password') }}</span></div>
+@if ($errors->has('password'))
+    <div class="invalid-feedback"><span>{{ $errors->first('password') }}</span></div>
     @endif
+        //-->
 </div>
 @yield('contents')
 </body>
