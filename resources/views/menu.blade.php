@@ -14,8 +14,8 @@
 </span>
 <span>
     @if(Route::currentRouteName() == 'cart')
-        {{ @trans('shop.cart') }}
+        @auth {{ @trans('shop.orders') }} @else {{ @trans('shop.cart') }} @endauth
     @else
-        <a href="/cart">{{ @trans('shop.cart') }}</a>
+        <a href="/cart">@auth {{ @trans('shop.orders') }} @else {{ @trans('shop.cart') }} @endauth</a>
     @endif
 </span>

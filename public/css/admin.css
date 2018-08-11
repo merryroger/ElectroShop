@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    background-color: #eeeeee;
+}
+
+div.header {
+    position:absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+header {
+    padding: 6px 0;
+    background-color: #4b4e51;
+    display: block;
+}
+
+div.title {
+    float: left;
+    margin: 0 40pt;
+    color: #cbced1;
+    font: 400 17pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+.title a {
+    color: #cbced1;
+    text-decoration: none;
+}
+
+nav {
+    margin: 0 40pt;
+    padding: 4px 0;
+    font: 400 11pt "Fira Sans Extra Condensed", sans-serif;
+    display: block;
+}
+
+nav.menu {
+    float: left;
+}
+
+nav.ctrls {
+    float: right;
+}
+
+.menu span, .ctrls span {
+    margin: 0 8pt;
+    color: #dbdee1;
+}
+
+.menu a {
+    color: #6db8f7;
+}
+
+.ctrls a {
+    color: #cbced1;
+}
+
+#dd_menu {
+    position: absolute;
+    padding: 5px 10pt 8px;
+    background-color: #f0f2f4;
+    border: 1px solid #999999;
+    border-radius: 5px;
+}
+
+div#dd_menu a {
+    color: #4d98d7;
+    font-size: 11pt;
+}
+
+.v {
+    display: block;
+}
+
+.h {
+    display: none;
+}

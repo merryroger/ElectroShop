@@ -10,6 +10,7 @@
     <title>{{ @trans('shop.title') }}</title>
 
     <!-- Scripts -->
+    <script src="/js/admcontrols.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -17,8 +18,7 @@
           rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    @dump(session()->all());
-    @if(strcmp(session()->get('user'), 'admin'))
+    @if(strcmp(Auth::user()->role, 'admin'))
         <link rel="stylesheet" href="css/shop.css" type="text/css">
     @else
         <link rel="stylesheet" href="css/admin.css" type="text/css">
@@ -26,37 +26,32 @@
 </head>
 <body>
 <div class="header">
-<!--
     <header>
         @if(Route::currentRouteName() == 'products')
-    <div class="title">{{ @trans('shop.name') }}</div>
+            <div class="title">{{ @trans('shop.name') }}</div>
         @else
-    <div class="title"><a href="/">{{ @trans('shop.name') }}</a></div>
+            <div class="title"><a href="/">{{ @trans('shop.name') }}</a></div>
         @endif
         <nav class="menu">
             @include('menu')
         </nav>
         <nav class="ctrls">
-        <span>
-            @if(Route::currentRouteName() == 'login')
-    {{ @trans('shop.sign_in') }}
-@else
-    <a href="{{ route('login') }}">{{ @trans('shop.sign_in') }}</a>
-            @endif
-        </span>
-            <span>
-            <a href="{{ route('register') }}">{{ @trans('shop.sign_up') }}</a>
-        </span>
+            <span onmouseover="showDDMenu(this)" onmouseout="closeDDMenu()" onclick="return false;">
+                <a href="#">{{ Auth::user()->name }}</a>
+            </span>
+            <div id="dd_menu" class="h">
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    {{ @trans('shop.logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                      style="display: none;">
+                    @csrf
+                </form>
+            </div>
         </nav>
         <br clear="all"/>
     </header>
-    @if ($errors->has('name'))
-    <div class="invalid-feedback"><span>{{ $errors->first('name') }}</span></div>
-    @endif
-@if ($errors->has('password'))
-    <div class="invalid-feedback"><span>{{ $errors->first('password') }}</span></div>
-    @endif
-        //-->
 </div>
 @yield('contents')
 </body>
