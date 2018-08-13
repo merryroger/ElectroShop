@@ -8,7 +8,7 @@ class AuthController extends LoginController
 {
     protected function redirectTo()
     {
-        return route('cart');
+        return route('admin.orders.list');
     }
 
     public function username()

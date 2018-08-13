@@ -10,6 +10,7 @@
     <title>{{ @trans('shop.title') }}</title>
 
     <!-- Scripts -->
+    <script src="/js/admcontrols.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -31,16 +32,32 @@
             @include('menu')
         </nav>
         <nav class="ctrls">
-        <span>
-            @if(Route::currentRouteName() == 'login')
-                {{ @trans('shop.sign_in') }}
+            @auth
+                <span onmouseover="showDDMenu(this)" onmouseout="closeDDMenu()" onclick="return false;">
+                    <a href="#">{{ Auth::user()->name }}</a>
+                </span>
+                <div id="dd_menu" class="h">
+                    <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ @trans('shop.logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                          style="display: none;">
+                        @csrf
+                    </form>
+                </div>
             @else
-                <a href="{{ route('login') }}">{{ @trans('shop.sign_in') }}</a>
-            @endif
-        </span>
-            <span>
-            <a href="{{ route('register') }}">{{ @trans('shop.sign_up') }}</a>
-        </span>
+                <span>
+                    @if(Route::currentRouteName() == 'login')
+                        {{ @trans('shop.sign_in') }}
+                    @else
+                        <a href="{{ route('login') }}">{{ @trans('shop.sign_in') }}</a>
+                    @endif
+                </span>
+                <span>
+                    <a href="{{ route('register') }}">{{ @trans('shop.sign_up') }}</a>
+                </span>
+            @endauth
         </nav>
         <br clear="all"/>
     </header>

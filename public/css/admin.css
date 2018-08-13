@@ -1,83 +1,88 @@
-* {
-    margin: 0;
-    padding: 0;
+span.add {
+    margin: 0 3pt;
 }
 
-html, body {
-    height: 100%;
-    background-color: #eeeeee;
-}
-
-div.header {
-    position:absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-}
-
-header {
-    padding: 6px 0;
-    background-color: #4b4e51;
-    display: block;
-}
-
-div.title {
-    float: left;
-    margin: 0 40pt;
-    color: #cbced1;
-    font: 400 17pt "Fira Sans Extra Condensed", sans-serif;
-}
-
-.title a {
-    color: #cbced1;
+.add a {
+    padding: 0 6px;
     text-decoration: none;
+    background-color: #6b6e71;
+    border-radius: 8px;
 }
 
-nav {
-    margin: 0 40pt;
-    padding: 4px 0;
+table.admlist {
+    margin: auto;
+    border-collapse: collapse;
     font: 400 11pt "Fira Sans Extra Condensed", sans-serif;
-    display: block;
 }
 
-nav.menu {
-    float: left;
+.admlist caption {
+    padding: 4px 5pt;
+    text-align: right;
+    color: #3b3e41;
+    white-space: nowrap;
 }
 
-nav.ctrls {
-    float: right;
+.admlist th {
+    color: #3b3e41;
+    padding: 4px 6pt;
+    font-weight: 400;
+    border-bottom: 1px solid #3b3e41;
 }
 
-.menu span, .ctrls span {
-    margin: 0 8pt;
-    color: #dbdee1;
+.adb td {
+    padding: 8px 6pt;
+    text-align: left;
+    font-size: 10pt;
 }
 
-.menu a {
+.adb tr:nth-child(odd) {
+    background-color: #ebeef0;
+}
+
+.adb tr:nth-child(even) {
+    background-color: #dbdee1;
+}
+
+.adb tr:hover {
     color: #6db8f7;
+    background-color: #3b3e41;
+    cursor: pointer;
 }
 
-.ctrls a {
-    color: #cbced1;
+form.adm_form {
+    padding: 30px 30pt;
+    background-color: #dbdede;
+    border: 1px solid #bbbec1;
+    border-radius: 10px;
 }
 
-#dd_menu {
-    position: absolute;
-    padding: 5px 10pt 8px;
-    background-color: #f0f2f4;
-    border: 1px solid #999999;
+div.adm_form_row {
+    text-align: right;
+    padding: 5px 5pt 15px;
+}
+
+.adm_form_row label {
+    margin: 0 8pt;
+    /*color: #ebeef1;*/
+    text-align: right;
+}
+
+div.admfmctrls {
+    margin-top: 15px;
+    margin-right: 5pt;
+    text-align: right;
+}
+
+.adm_form_row input, .adm_form_row textarea {
+    margin-left: 5pt;
+    padding: 2px 5pt;
+    width: 200px;
+    border: 1px solid #bbbbbb;
     border-radius: 5px;
+    color: #333333;
+    background-color: #ebeeee;
 }
 
-div#dd_menu a {
-    color: #4d98d7;
-    font-size: 11pt;
-}
-
-.v {
-    display: block;
-}
-
-.h {
-    display: none;
+.adm_form_row textarea {
+    resize: none;
 }

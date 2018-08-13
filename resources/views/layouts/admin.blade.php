@@ -18,22 +18,15 @@
           rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    @if(strcmp(Auth::user()->role, 'admin'))
-        <link rel="stylesheet" href="css/shop.css" type="text/css">
-    @else
-        <link rel="stylesheet" href="css/admin.css" type="text/css">
-    @endif
+    <link rel="stylesheet" href="/css/shop.css" type="text/css">
+    <link rel="stylesheet" href="/css/admin.css" type="text/css">
 </head>
 <body>
 <div class="header">
     <header>
-        @if(Route::currentRouteName() == 'products')
-            <div class="title">{{ @trans('shop.name') }}</div>
-        @else
-            <div class="title"><a href="/">{{ @trans('shop.name') }}</a></div>
-        @endif
+        <div class="title"><a href="/">{{ @trans('shop.To') }} {{ @trans('shop.name') }}</a></div>
         <nav class="menu">
-            @include('menu')
+            @include('admenu')
         </nav>
         <nav class="ctrls">
             <span onmouseover="showDDMenu(this)" onmouseout="closeDDMenu()" onclick="return false;">
@@ -52,6 +45,15 @@
         </nav>
         <br clear="all"/>
     </header>
+    @if ($errors->any())
+        <div class="invalid-feedback">
+                <span>
+                @foreach($errors->all() as $error)
+                        {{ $error }}.
+                    @endforeach
+                </span>
+        </div>
+    @endif
 </div>
 @yield('contents')
 </body>

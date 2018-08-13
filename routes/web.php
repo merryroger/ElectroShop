@@ -12,10 +12,25 @@
 */
 
 Route::get('/', 'ProductController@index')->name('products');
-
 Route::get('/categories', 'CategoryController@index')->name('categories');
-
 Route::get('/cart', 'OrderController@index')->name('cart')->middleware('cart');
+
+Route::middleware('admin')->group(function () {
+    Route::namespace('Admin')->group(function () {
+        Route::name('admin.products.')->group(function () {
+            Route::get('/admin', 'ProductController@index')->name('list');
+            Route::get('/admin/add', 'ProductController@create')->name('get_form');
+        });
+        Route::name('admin.categories.')->group(function () {
+            Route::get('/admin/categories', 'CategoryController@index')->name('list');
+            Route::get('/admin/categories/add', 'CategoryController@create')->name('get_form');
+            Route::post('/admin/categories', 'CategoryController@store')->name('add');
+        });
+        Route::name('admin.orders.')->group(function () {
+            Route::get('/admin/orders', 'OrderController@index')->name('list');
+        });
+    });
+});
 
 Route::namespace('Auth')->group(function () {
     Route::get('/login', 'AuthController@showLoginForm')->name('login');
@@ -26,4 +41,3 @@ Route::namespace('Auth')->group(function () {
     Route::post('/register', 'RegisterController@register');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');

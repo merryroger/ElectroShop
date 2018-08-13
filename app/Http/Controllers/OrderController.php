@@ -16,9 +16,13 @@ class OrderController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $isAdmin = (isset($user) && !strcmp($user->role, 'admin'));
+        $orders = Order::all();
 
-        return ($isAdmin) ? view('admin.orders') : view('orders');
+        if(!$orders->count()) {
+            session()->flash('no_orders', true);
+        }
+
+        return (isset($user)) ? view('orders') : view('cart');
     }
 
     /**

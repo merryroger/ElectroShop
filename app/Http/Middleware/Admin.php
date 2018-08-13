@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Closure;
 
-class Cart
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -18,8 +17,8 @@ class Cart
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        $products = Product::all();
+        $isAdmin = (isset($user) && !strcmp($user->role, 'admin'));
 
-        return (isset($user) || $products->count()) ? $next($request) : redirect()->route('products');
+        return ($isAdmin) ? $next($request) : redirect()->route('products');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -15,11 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $isAdmin = (isset($user) && !strcmp($user->role, 'admin'));
         $products = Product::all();
 
-        return ($isAdmin) ? view('admin.goods', compact('products')) : view('goods', compact('products'));
+        return view('goods', compact('products'));
     }
 
     /**
