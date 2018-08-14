@@ -56,6 +56,16 @@ form.adm_form {
     border-radius: 10px;
 }
 
+div.view_form_row {
+    text-align: left;
+    padding: 8px 5pt;
+}
+
+.view_form_row label {
+    margin-right: 5pt;
+    font-size: 11pt;
+}
+
 div.adm_form_row {
     text-align: right;
     padding: 5px 5pt 15px;

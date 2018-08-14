@@ -18,11 +18,12 @@ Route::get('/cart', 'OrderController@index')->name('cart')->middleware('cart');
 Route::middleware('admin')->group(function () {
     Route::namespace('Admin')->group(function () {
         Route::name('admin.products.')->group(function () {
-            Route::get('/admin', 'ProductController@index')->name('list');
-            Route::get('/admin/add', 'ProductController@create')->name('get_form');
+            Route::get('/admin/products', 'ProductController@index')->name('list');
+            Route::get('/admin/products/add', 'ProductController@create')->name('get_form');
         });
         Route::name('admin.categories.')->group(function () {
             Route::get('/admin/categories', 'CategoryController@index')->name('list');
+            Route::get('/admin/categories/show/{category}', 'CategoryController@show')->name('show');
             Route::get('/admin/categories/add', 'CategoryController@create')->name('get_form');
             Route::post('/admin/categories', 'CategoryController@store')->name('add');
         });

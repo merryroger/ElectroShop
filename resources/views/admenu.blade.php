@@ -13,7 +13,7 @@
     @if(Route::currentRouteName() == 'admin.categories.list')
         {{ @trans('shop.good_cats') }}<span class="add"><a href="{{ route('admin.categories.get_form') }}"
                                                            title="{{ @trans('shop.add_category') }}">+</a></span>
-    @elseif(Route::currentRouteName() == 'admin.categories.get_form')
+    @elseif(preg_match("%^admin\.categories\.\w+$%", Route::currentRouteName()))
         {{ @trans('shop.good_cats') }}
     @else
         <a href="{{ route('admin.categories.list') }}">{{ @trans('shop.good_cats') }}</a>
