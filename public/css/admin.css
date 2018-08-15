@@ -59,11 +59,18 @@ form.adm_form {
 div.view_form_row {
     text-align: left;
     padding: 8px 5pt;
+    display: table-row;
+}
+
+div.view_form_row:nth-child(odd) {
+    border-top: 1px solid #cbcece;
+    border-bottom: 1px solid #cbcece;
 }
 
 .view_form_row label {
-    margin-right: 5pt;
+    padding: 8px 5pt;
     font-size: 11pt;
+    display: table-cell;
 }
 
 div.adm_form_row {
