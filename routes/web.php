@@ -17,18 +17,20 @@ Route::get('/cart', 'OrderController@index')->name('cart')->middleware('cart');
 
 Route::middleware('admin')->group(function () {
     Route::namespace('Admin')->group(function () {
-        Route::name('admin.products.')->group(function () {
-            Route::get('/admin/products', 'ProductController@index')->name('list');
-            Route::get('/admin/products/add', 'ProductController@create')->name('get_form');
-        });
-        Route::name('admin.categories.')->group(function () {
-            Route::get('/admin/categories', 'CategoryController@index')->name('list');
-            Route::get('/admin/categories/show/{category}', 'CategoryController@show')->name('show');
-            Route::get('/admin/categories/add', 'CategoryController@create')->name('get_form');
-            Route::post('/admin/categories', 'CategoryController@store')->name('add');
-        });
-        Route::name('admin.orders.')->group(function () {
-            Route::get('/admin/orders', 'OrderController@index')->name('list');
+        Route::prefix('admin')->group(function () {
+            Route::name('admin.products.')->group(function () {
+                Route::resource('products', 'ProductController',
+                    ['only' => ['index', 'create'],
+                     'names' => ['index' => 'list', 'create' => 'get_form']]);
+            });
+            Route::name('admin.categories.')->group(function () {
+                Route::resource('categories', 'CategoryController',
+                    ['only' => ['index', 'show', 'create', 'store'],
+                     'names' => ['index' => 'list', 'create' => 'get_form', 'show' => 'show', 'store' => 'add']]);
+            });
+            Route::name('admin.orders.')->group(function () {
+                Route::get('/orders', 'OrderController@index')->name('list');
+            });
         });
     });
 });
