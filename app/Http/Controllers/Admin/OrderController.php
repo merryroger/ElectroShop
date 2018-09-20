@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
@@ -15,15 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-
-        if(!isset($user)) {
-            return view('cart');
-        }
-
-        $isAdmin = (!strcmp($user->role, 'admin'));
-
-        return ($isAdmin) ? view('admin.orders') : view('orders');
+        return view('admin.orders');
     }
 
     /**

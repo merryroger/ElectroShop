@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,11 +18,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
         $categories = Category::all();
-        $isAdmin = $this->ifAdmin();
 
-        return ($isAdmin) ? view('admin.categories', compact('categories')) : view('categories', compact('categories', 'products'));
+        return view('admin.categories', compact('categories'));
     }
 
     /**
@@ -33,10 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
-        $isAdmin = $this->ifAdmin();
-
-        return ($isAdmin) ? view('admin.addcat') : view('categories', compact('products'));
+        return view('admin.addcat');
     }
 
     /**
@@ -76,9 +70,9 @@ class CategoryController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.editcat', compact('category'));
     }
 
     /**
@@ -88,9 +82,22 @@ class CategoryController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CategoryUpdateRequest $category)
     {
-        //
+        $fields = $request->except(['_token', '_method', 'id', 'image']);
+        $id = intval($request->get('id'));
+        $storedData = Category::find($id);
+        $image = $request->file('image');
+        if($image != null) {
+            $path = $image->storeAs('categories', $image->getClientOriginalName(), 'public');
+            Storage::disk('public')->delete($storedData->image);
+            Storage::url($path);
+            $fields['image'] = $path;
+        }
+
+        $storedData->update($fields);
+
+        return redirect()->route('admin.categories.list');
     }
 
     /**
@@ -102,17 +109,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    protected function ifAdmin()
-    {
-        $user = Auth::user();
-
-        if (!isset($user)) {
-            return $user;
-        }
-
-        return (!strcmp($user->role, 'admin'));
     }
 
 }

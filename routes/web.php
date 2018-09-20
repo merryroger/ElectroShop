@@ -15,18 +15,21 @@ Route::get('/', 'ProductController@index')->name('products');
 Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/cart', 'OrderController@index')->name('cart')->middleware('cart');
 
+//Route::middleware('user')->group(function () {
+//});
+
 Route::middleware('admin')->group(function () {
     Route::namespace('Admin')->group(function () {
         Route::prefix('admin')->group(function () {
             Route::name('admin.products.')->group(function () {
                 Route::resource('products', 'ProductController',
                     ['only' => ['index', 'create'],
-                     'names' => ['index' => 'list', 'create' => 'get_form']]);
+                        'names' => ['index' => 'list', 'create' => 'get_form']]);
             });
             Route::name('admin.categories.')->group(function () {
                 Route::resource('categories', 'CategoryController',
-                    ['only' => ['index', 'show', 'create', 'store'],
-                     'names' => ['index' => 'list', 'create' => 'get_form', 'show' => 'show', 'store' => 'add']]);
+                    ['names' => ['index' => 'list', 'create' => 'get_form', 'show' => 'show', 'store' => 'add',
+                                'edit' => 'edit', 'update' => 'update']]);
             });
             Route::name('admin.orders.')->group(function () {
                 Route::get('/orders', 'OrderController@index')->name('list');

@@ -12,14 +12,21 @@
                     <th style="width: 15%;">{{ @trans('shop.actions') }}</th>
                 </tr>
                 <tbody class="adb">
-                    @foreach($categories as $category)
-                        <tr onclick="document.location.href='{{ route('admin.categories.show', [$category->id]) }}'; return false;">
-                            <td class="ca">{{ $category->id }}</td>
-                            <td>{{ $category->code }}</td>
-                            <td>{{ $category->name }}</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                    @endforeach
+                @foreach($categories as $category)
+                    <tr>
+                        <td class="ca" onclick="document.location.href = '{{ route('admin.categories.show', [$category->id]) }}'; return false;">{{ $category->id }}</td>
+                        <td onclick="document.location.href = '{{ route('admin.categories.show', [$category->id]) }}'; return false;">{{ $category->code }}</td>
+                        <td onclick="document.location.href = '{{ route('admin.categories.show', [$category->id]) }}'; return false;">{{ $category->name }}</td>
+                        <td class="ca">
+                            <span class="edit" title="{{ @trans('shop.edit') }}">
+                                <img src="/images/blank.gif" class="tctr"
+                                     onclick="document.location.href='{{ route('admin.categories.edit', [$category->id]) }}'; return false;"/></span>
+                            <span class="delete" title="{{ @trans('shop.delete') }}">
+                                <img src="/images/blank.gif" class="tctr"/>
+                            </span>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
