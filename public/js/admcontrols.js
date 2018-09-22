@@ -40,3 +40,18 @@ function shutDDMenu() {
         mlt = 0;
     }
 }
+
+function requestEntity(route) {
+    document.location.href = route;
+    return false;
+}
+
+function removeEntity(route, warning) {
+    if (confirm(warning)) {
+        let fm = document.querySelector('#rm_form');
+        fm.action = route;
+        fm.submit();
+    }
+
+    return false;
+}

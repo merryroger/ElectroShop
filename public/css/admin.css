@@ -104,6 +104,16 @@ div.admfmctrls {
     resize: none;
 }
 
+.adm_form_row select {
+    margin-left: 5pt;
+    padding: 2px;
+    width: 215px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    color: #333333;
+    background-color: #ebeeee;
+}
+
 .tctr {
     margin: 0 3px;
     width: 16px;

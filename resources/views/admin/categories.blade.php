@@ -14,21 +14,27 @@
                 <tbody class="adb">
                 @foreach($categories as $category)
                     <tr>
-                        <td class="ca" onclick="document.location.href = '{{ route('admin.categories.show', [$category->id]) }}'; return false;">{{ $category->id }}</td>
-                        <td onclick="document.location.href = '{{ route('admin.categories.show', [$category->id]) }}'; return false;">{{ $category->code }}</td>
-                        <td onclick="document.location.href = '{{ route('admin.categories.show', [$category->id]) }}'; return false;">{{ $category->name }}</td>
+                        <td class="ca"
+                            onclick="return requestEntity('{{ route('admin.categories.show', [$category->id]) }}')">{{ $category->id }}</td>
+                        <td onclick="return requestEntity('{{ route('admin.categories.show', [$category->id]) }}')">{{ $category->code }}</td>
+                        <td onclick="return requestEntity('{{ route('admin.categories.show', [$category->id]) }}')">{{ $category->name }}</td>
                         <td class="ca">
                             <span class="edit" title="{{ @trans('shop.edit') }}">
                                 <img src="/images/blank.gif" class="tctr"
-                                     onclick="document.location.href='{{ route('admin.categories.edit', [$category->id]) }}'; return false;"/></span>
+                                     onclick="return requestEntity('{{ route('admin.categories.edit', [$category->id]) }}')"/></span>
                             <span class="delete" title="{{ @trans('shop.delete') }}">
-                                <img src="/images/blank.gif" class="tctr"/>
+                                <img src="/images/blank.gif" class="tctr"
+                                     onclick="return removeEntity('{{ route('admin.categories.remove', [$category->id]) }}', '{{ @trans('shop.do_rem_cat') }}')"/>
                             </span>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+            <form id="rm_form" method="post" class="h">
+                @csrf
+                @method('DELETE')
+            </form>
         </div>
     </div>
 @endsection

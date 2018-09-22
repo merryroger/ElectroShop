@@ -23,13 +23,13 @@ Route::middleware('admin')->group(function () {
         Route::prefix('admin')->group(function () {
             Route::name('admin.products.')->group(function () {
                 Route::resource('products', 'ProductController',
-                    ['only' => ['index', 'create'],
-                        'names' => ['index' => 'list', 'create' => 'get_form']]);
+                    ['only' => ['index', 'create', 'store'],
+                        'names' => ['index' => 'list', 'create' => 'get_form', 'store' => 'add']]);
             });
             Route::name('admin.categories.')->group(function () {
                 Route::resource('categories', 'CategoryController',
                     ['names' => ['index' => 'list', 'create' => 'get_form', 'show' => 'show', 'store' => 'add',
-                                'edit' => 'edit', 'update' => 'update']]);
+                                'edit' => 'edit', 'update' => 'update', 'destroy' => 'remove']]);
             });
             Route::name('admin.orders.')->group(function () {
                 Route::get('/orders', 'OrderController@index')->name('list');

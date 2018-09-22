@@ -82,20 +82,18 @@ class CategoryController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CategoryUpdateRequest $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         $fields = $request->except(['_token', '_method', 'id', 'image']);
-        $id = intval($request->get('id'));
-        $storedData = Category::find($id);
         $image = $request->file('image');
         if($image != null) {
+            $category->removeImage();
             $path = $image->storeAs('categories', $image->getClientOriginalName(), 'public');
-            Storage::disk('public')->delete($storedData->image);
             Storage::url($path);
             $fields['image'] = $path;
         }
 
-        $storedData->update($fields);
+        $category->update($fields);
 
         return redirect()->route('admin.categories.list');
     }
@@ -106,9 +104,11 @@ class CategoryController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('admin.categories.list');
     }
 
 }
