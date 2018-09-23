@@ -20,8 +20,8 @@
                                 <input type="text" name="code" value="{{ old('code') }}" tabindex="2" required/>
                             </div>
                             <div class="adm_form_row">
-                                <label for="category">{{ @trans('shop.category') }}</label>
-                                <select name="category" size="1" tabindex="3">
+                                <label for="category_id">{{ @trans('shop.category') }}</label>
+                                <select name="category_id" size="1" tabindex="3">
                                     @foreach($categories as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach

@@ -23,8 +23,8 @@ Route::middleware('admin')->group(function () {
         Route::prefix('admin')->group(function () {
             Route::name('admin.products.')->group(function () {
                 Route::resource('products', 'ProductController',
-                    ['only' => ['index', 'create', 'store'],
-                        'names' => ['index' => 'list', 'create' => 'get_form', 'store' => 'add']]);
+                    ['names' => ['index' => 'list', 'create' => 'get_form', 'show' => 'show', 'store' => 'add',
+                                 'edit' => 'edit', 'update' => 'update', 'destroy' => 'remove']]);
             });
             Route::name('admin.categories.')->group(function () {
                 Route::resource('categories', 'CategoryController',

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\GoodsCreateRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -40,9 +42,18 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GoodsCreateRequest $request)
     {
-        //
+        $image = $request->file('image');
+        $path = $image->storeAs('products', $image->getClientOriginalName(), 'public');
+        Storage::url($path);
+
+        $fields = $request->except(['_token', 'image']);
+        $fields['image'] = $path;
+
+        Product::create($fields);
+
+        return redirect()->route('admin.products.list');
     }
 
     /**
