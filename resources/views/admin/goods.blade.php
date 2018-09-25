@@ -23,7 +23,7 @@
                             <td onclick="return requestEntity('{{ route('admin.products.show', [$product->id]) }}')">{{ $product->name }}</td>
                             <td onclick="return requestEntity('{{ route('admin.products.show', [$product->id]) }}')">{{ $categories->find($product->category_id)->name }}</td>
                             <td class="ca"
-                                onclick="return requestEntity('{{ route('admin.products.show', [$product->id]) }}')">{{ $product->price }}</td>
+                                onclick="return requestEntity('{{ route('admin.products.show', [$product->id]) }}')">{{ sprintf('%01.2f', $product->price) }}</td>
                             <td class="ca">
                             <span class="edit" title="{{ @trans('shop.edit') }}">
                                 <img src="/images/blank.gif" class="tctr"

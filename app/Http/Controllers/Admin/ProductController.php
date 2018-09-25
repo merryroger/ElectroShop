@@ -62,9 +62,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        $product->setAttribute('catName', Category::categoryById($product->category_id)->first()->name);
+
+        return view('admin.prodshow', compact('product'));
     }
 
     /**
