@@ -221,3 +221,24 @@ div.item_picture {
     background-position-y: center;
     border-radius: 25px;
 }
+
+div.cat_card {
+    padding: 20px 70pt;
+    background-color: #ffffff;
+    background-position: 20px 16px;
+    background-repeat: no-repeat;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    text-align: left;
+    color: #4b4e51;
+    font: 400 11pt "Fira Sans Extra Condensed", sans-serif;
+}
+
+.cat_card h1 {
+    font-size: 16pt;
+}
+
+.cat_card span {
+    font-weight: 400 !important;
+    color: #8b8e91;
+}
