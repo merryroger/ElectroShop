@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', 'ProductController@index')->name('products');
+Route::name('products')->group(function () {
+    Route::get('/', 'ProductController@index');
+    Route::get('/products/by_category/{category_code}', 'ProductController@showByCategory')->name('.show_by_cats');
+});
+
 Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/cart', 'OrderController@index')->name('cart')->middleware('cart');
 
@@ -24,12 +28,12 @@ Route::middleware('admin')->group(function () {
             Route::name('admin.products.')->group(function () {
                 Route::resource('products', 'ProductController',
                     ['names' => ['index' => 'list', 'create' => 'get_form', 'show' => 'show', 'store' => 'add',
-                                 'edit' => 'edit', 'update' => 'update', 'destroy' => 'remove']]);
+                        'edit' => 'edit', 'update' => 'update', 'destroy' => 'remove']]);
             });
             Route::name('admin.categories.')->group(function () {
                 Route::resource('categories', 'CategoryController',
                     ['names' => ['index' => 'list', 'create' => 'get_form', 'show' => 'show', 'store' => 'add',
-                                'edit' => 'edit', 'update' => 'update', 'destroy' => 'remove']]);
+                        'edit' => 'edit', 'update' => 'update', 'destroy' => 'remove']]);
             });
             Route::name('admin.orders.')->group(function () {
                 Route::get('/orders', 'OrderController@index')->name('list');

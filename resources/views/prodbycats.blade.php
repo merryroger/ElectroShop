@@ -1,9 +1,13 @@
 @extends('layouts.shop')
 
 @section('contents')
-    @if($products->count())
+    @if($category->capacity > 0)
         <div class="pt">
             <div class="ptc hc vt et">
+                <div class="cat_header">
+                    <h1>{{ $category->name }}</h1>
+                    <p>{{ $category->description }}</p>
+                </div>
                 @foreach($products as $product)
                     <div class="prod_card" style="background-image: url('{{ Storage::url($product->image) }}')">
                         <h2>{{ $product->name }}</h2>
@@ -13,6 +17,11 @@
             </div>
         </div>
     @else
-        @include('no_goods')
+        <div class="pt">
+            <div class="ptc hc vc">
+                <p class="info">{{ @trans('shop.no_goods') }}</p>
+            </div>
+        </div>
     @endif
 @endsection
+

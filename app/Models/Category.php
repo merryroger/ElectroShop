@@ -21,6 +21,11 @@ class Category extends Model
         return $query->whereId($id);
     }
 
+    public function scopeCategoryByCode($query, $code)
+    {
+        return $query->where('code', $code);
+    }
+
     public function removeImage()
     {
         Storage::disk('public')->delete($this->image);

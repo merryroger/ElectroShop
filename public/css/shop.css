@@ -77,6 +77,10 @@ div.ptc {
     color: #cbced1;
 }
 
+a.shop_link {
+    color: #3d88d7;
+}
+
 .info {
     color: #666666;
     font: 400 12pt "Fira Sans Extra Condensed", sans-serif;
@@ -223,9 +227,12 @@ div.item_picture {
 }
 
 div.cat_card {
+    margin: 0 10pt 10px 10pt;
+    float: left;
+    width: auto;
     padding: 20px 70pt;
     background-color: #ffffff;
-    background-position: 20px 16px;
+    background-position: 20px center;
     background-repeat: no-repeat;
     border: 1px solid #e8e8e8;
     border-radius: 10px;
@@ -235,10 +242,43 @@ div.cat_card {
 }
 
 .cat_card h1 {
+    margin-bottom: 3px;
     font-size: 16pt;
 }
 
 .cat_card span {
     font-weight: 400 !important;
     color: #8b8e91;
+}
+
+.cat_header {
+    font-family: "Fira Sans Extra Condensed", sans-serif;
+    margin-bottom: 40px;
+}
+
+.cat_header h1 {
+    color: #444444;
+    margin-bottom: 3px;
+}
+
+div.prod_card {
+    margin: 0 10pt 15px 0;
+    width: 300px;
+    height: 400px;
+    max-height: 400px;
+    padding: 16px 20px;
+    background-color: #ffffff;
+    background-position: center 60px;
+    background-repeat: no-repeat;
+    background-size: 200px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    display: inline-block;
+    font-family: "Fira Sans Extra Condensed", sans-serif;
+}
+
+.prod_card h2 {
+    color: #444444;
+    font-size: 17pt;
+    margin-bottom: 250px;
 }
