@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -36,7 +35,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Http\Requests\CategoryRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(CategoryRequest $request)
@@ -56,7 +55,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\Category $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
@@ -67,7 +66,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\Category $category
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
@@ -78,15 +77,15 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \App\Http\Requests\CategoryUpdateRequest $request
+     * @param  \App\Models\Category $category
      * @return \Illuminate\Http\Response
      */
     public function update(CategoryUpdateRequest $request, Category $category)
     {
         $fields = $request->except(['_token', '_method', 'id', 'image']);
         $image = $request->file('image');
-        if($image != null) {
+        if ($image != null) {
             $category->removeImage();
             $path = $image->storeAs('categories', $image->getClientOriginalName(), 'public');
             Storage::url($path);
@@ -101,11 +100,12 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  \App\Models\Category $category
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
     {
+        $category->products()->get()->map->delete();
         $category->delete();
 
         return redirect()->route('admin.categories.list');

@@ -229,8 +229,10 @@ div.item_picture {
 div.cat_card {
     margin: 0 10pt 10px 10pt;
     float: left;
-    width: auto;
-    padding: 20px 70pt;
+    width: 23%;
+    min-width: 250px;
+    height: 75px;
+    padding: 20px 20pt 20px 70pt;
     background-color: #ffffff;
     background-position: 20px center;
     background-repeat: no-repeat;
