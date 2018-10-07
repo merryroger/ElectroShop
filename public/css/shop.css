@@ -263,6 +263,46 @@ div.cat_card {
     margin-bottom: 3px;
 }
 
+div.detailed_prod_card {
+    width: 480px;
+    height: 640px;
+    max-height: 640px;
+    padding: 16px 20px;
+    background-color: #ffffff;
+    background-position: center 120px;
+    background-repeat: no-repeat;
+    background-size: 300px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    display: inline-block;
+    font-family: "Fira Sans Extra Condensed", sans-serif;
+}
+
+.detailed_prod_card span {
+    color: #666666;
+}
+
+.detailed_prod_card h5 {
+    color: #666666;
+    font-size: 11pt;
+    font-weight: 400;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.detailed_prod_card h6 {
+    color: #666666;
+    font-size: 11pt;
+    font-weight: 400;
+    margin: 16px 20pt;
+}
+
+.detailed_prod_card h2 {
+    color: #444444;
+    font-size: 22pt;
+    margin-bottom: 400px;
+}
+
 div.prod_card {
     margin: 0 10pt 15px 0;
     width: 300px;
@@ -283,4 +323,21 @@ div.prod_card {
     color: #444444;
     font-size: 17pt;
     margin-bottom: 250px;
+}
+
+div.prod_ctrls {
+    margin: 40px 20pt 10px;
+}
+
+.prod_ctrls a {
+    margin: 0 2px;
+    padding: 6px 12pt;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a.prod_details {
+    color: #666666;
+    background-color: #eeeeee;
 }

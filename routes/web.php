@@ -14,6 +14,7 @@
 Route::name('products')->group(function () {
     Route::get('/', 'ProductController@index');
     Route::get('/products/by_category/{category_code}', 'ProductController@showByCategory')->name('.show_by_cats');
+    Route::get('/products/{category_code}/{product_code}', 'ProductController@showProductDetails')->name('.show_details');
 });
 
 Route::get('/categories', 'CategoryController@index')->name('categories');

@@ -16,6 +16,11 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function scopeProductByCode($query, $code)
+    {
+        return $query->where('code', $code);
+    }
+
     public function removeImage()
     {
         Storage::disk('public')->delete($this->image);
